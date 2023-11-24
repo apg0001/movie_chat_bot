@@ -1,0 +1,43 @@
+version: "3.1"
+
+nlu:
+- intent: greet
+  examples: |
+    - Hi
+    - Hello
+    - Hey
+    - Good morning
+    - Good afternoon
+    - Good evening
+    - How are you?
+    - What's up?
+    - Hi there
+    - Greetings
+    - What's going on?
+- intent: recommend_movie
+  examples: |
+    - Recommend a movie
+    - Suggest a good movie
+    - Any recommendations for movies?
+    - What movie should I watch?
+    - Recommend a movie in the [action](genre) genre
+    - Suggest a movie directed by [Christopher Nolan](director)
+    - Can you tell me about [romance](genre) movies?
+    - Recommend a movie with the title '[Inception](movie_title)'
+    - Suggest a movie directed by [Christopher Nolan](director)
+    - What's a good [romance](genre) movie to watch?
+    - I want to watch a [thrilling](genre) movie, any suggestions?
+    - Suggest a movie by [Quentin Tarantino](director)
+    - Recommend a [comedy](genre) film
+    - Tell me about a movie in the [sci-fi](genre) genre
+    - Suggest a [drama](genre) movie to watch
+    - What's a good [animated](genre) movie?
+    - I'm in the mood for a [musical](genre) movie, any recommendations?
+    - Can you suggest a [classic](genre) film?
+    - Tell me about a [documentary](genre) to watch
+    - Suggest a [fantasy](genre) movie
+    - What's a good [horror](genre) film to watch?
+    - Can you recommend a [biography](genre) movie?
+    - Suggest a movie in the [mystery](genre) genre
+    - Recommend a [western](genre) film
+    - Tell me about a movie in the [adventure](genre) genres

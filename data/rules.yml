@@ -1,0 +1,14 @@
+version: "3.1"
+
+rules:
+- rule: user greet
+  steps:
+  - intent: greet
+  - action: utter_greet
+
+- rule: user requests movie recommendation
+  steps:
+  - intent: recommend_movie
+  - action: action_store_user_info
+  - action: action_recommend_movie
+#  - action: utter_recommendation
