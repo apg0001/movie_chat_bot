@@ -3,13 +3,22 @@ version: "3.1"
 intents:
   - greet
   - recommend_movie
+  - search_movie_info
 
 entities:
   - movie_title
   - director
   - genre
+  - score
+  - age
+  - nation
+  - flatform
+  - year
+  - actor
+  - 관객수
 
 forms:
+  
 
 slots:
   movie_title:
@@ -35,6 +44,11 @@ responses:
   utter_recommendation:
     - text: "I recommend the movie '{movie_title}' directed by {director} in the genre '{genre}'."
     - text: "How about watching '{movie_title}'? It's a {genre} movie directed by {director}."
+
+  utter_movie_info:
+    - text: "Title: '{movie_title}\n
+              Driector: '{director}\n
+              "
 
 
 actions:

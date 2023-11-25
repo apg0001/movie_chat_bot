@@ -18,7 +18,8 @@ class ActionStoreUserInfo(Action):
         genre = tracker.get_slot("genre")
 
         # 정보를 슬롯에 저장
-        return [SlotSet("director", director),SlotSet("genre", genre) ]
+        return [SlotSet("director", director),
+                SlotSet("genre", genre) ]
 
 class ActionRecommendMovie(Action):
     def name(self) -> Text:
@@ -78,12 +79,13 @@ class ActionRecommendMovie(Action):
 
         # 추천된 영화 표시
         message = (
-            f"I recommend the movie '{recommended_movie['movie_title']}' directed by "
-            f"{recommended_movie['director']} in the genre '{recommended_movie['genre']}'."
+            f"I recommend the movie '{recommended_movie['Title']}' directed by "
+            f"{recommended_movie['Director']} in the genre '{recommended_movie['Genre']}'."
         )
         dispatcher.utter_message(message)
 
-        return []
+        return [SlotSet("director", None),
+                SlotSet("genre", None)]
 
     def get_random_movie(self):
         # 데이터베이스에서 모든 영화 가져오기
