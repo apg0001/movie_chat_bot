@@ -14,30 +14,113 @@ nlu:
     - Hi there
     - Greetings
     - What's going on?
+
 - intent: recommend_movie
   examples: |
     - Recommend a movie
     - Suggest a good movie
     - Any recommendations for movies?
     - What movie should I watch?
+
+- intent: inform
     - Recommend a movie in the [action](genre) genre
     - Suggest a movie directed by [Christopher Nolan](director)
     - Can you tell me about [romance](genre) movies?
-    - Recommend a movie with the title '[Inception](movie_title)'
-    - Suggest a movie directed by [Christopher Nolan](director)
     - What's a good [romance](genre) movie to watch?
-    - I want to watch a [thrilling](genre) movie, any suggestions?
-    - Suggest a movie by [Quentin Tarantino](director)
-    - Recommend a [comedy](genre) film
     - Tell me about a movie in the [sci-fi](genre) genre
     - Suggest a [drama](genre) movie to watch
     - What's a good [animated](genre) movie?
     - I'm in the mood for a [musical](genre) movie, any recommendations?
     - Can you suggest a [classic](genre) film?
-    - Tell me about a [documentary](genre) to watch
-    - Suggest a [fantasy](genre) movie
     - What's a good [horror](genre) film to watch?
     - Can you recommend a [biography](genre) movie?
     - Suggest a movie in the [mystery](genre) genre
     - Recommend a [western](genre) film
     - Tell me about a movie in the [adventure](genre) genres
+    - Suggest me a [comedy](genre) movie with a rating above [4](rating)
+    - Recommend me [action](genre) movies directed by [Christopher Nolan](director)
+    - Recommend [thriller](genre) films on [Netflix](platform)
+    - I want to watch a [drama](genre) movie
+    - What are the top rated movies on [Amazon Prime](platform)?
+    - Suggest [science fiction](genre) films with a minimum rating of [3](rating)
+    - Any good [horror](genre) movies directed by [Guillermo del Toro](director)?
+    - List [fantasy](genre) films with a high rating
+    - Movies by [Steven Spielberg](director) available on [Hulu](platform)
+    - What are some [comedy](genre) movies with a rating above [4](rating)
+    - I'm looking for [documentary](genre) on [Disney+](platform)
+    - Recommend [action](genre) films with a minimum rating of [4](rating) on [Netflix](platform)
+    - Tell me about [Christopher Nolan](director) movies
+    - Recommend movies with a rating of [4](rating) or higher
+    - Suggest films with a rating above [3](rating)
+    - Movies with ratings [4](rating) and above, please
+    - Recommend films rated [5](rating) or higher
+    - I want to see movies with a minimum rating of [4](rating)
+    - What are some good movies with ratings above [4](rating)?
+    - Find films rated [3](rating) or higher
+
+- intent: search_movie_info
+  examples: |
+    - Give me information about [The Shawshank Redemption](movie_title)
+    - Tell me about [The Dark Knight](movie_title)
+    - Give me details on [Inception](movie_title)
+    - Tell me about [The Godfather](movie_title)
+    - Give me information on [Pulp Fiction](movie_title)
+    - Tell me about [The Matrix](movie_title)
+    - Give me details on [Titanic](movie_title)
+    - Tell me about [Avatar](movie_title)
+    - Give me information about [Jurassic Park](movie_title)
+    - Tell me about [The Lion King](movie_title)
+    - Give me details on [Interstellar](movie_title)
+    - Tell me about [Gladiator](movie_title)
+    - Give me information on [The Silence of the Lambs](movie_title)
+    - Tell me about [Schindler's List](movie_title)
+    - Give me details on [The Lord of the Rings: The Fellowship of the Ring](movie_title)
+    - Tell me about [Fight Club](movie_title)
+    - Give me information about [The Avengers](movie_title)
+    - Tell me about [The Great Gatsby](movie_title)
+    - Give me details on [The Revenant](movie_title)
+    - Tell me about [The Social Network](movie_title)
+    
+- intent: affirm
+  examples: |
+    - correct
+    - ye
+    - uh yes
+    - let's do it
+    - yeah
+    - uh yes
+    - um yes
+    - that's correct
+    - yes yes
+    - right
+    - yea
+    - yes
+    - yes right
+    - yes and i dont care
+    - right on
+    - i love that
+
+- intent: deny
+  examples: |
+    - no
+    - no thanks
+    - no thank you
+    - uh no
+    - no new selection
+    - breath no
+    - do you have something else
+    - no this does not work for me
+
+- intent: stop
+  examples: |
+    - ok then you cant help me
+    - you can't help me
+    - you can't help me with what i need
+    - i guess you can't help me then
+    - ok i guess you can't help me
+    - that's not what i want
+    - ok, but that doesnt help me
+    - this conversation is not really helpful
+    - you cannot help me with what I want
+    - I think you cant help me
+    - stop

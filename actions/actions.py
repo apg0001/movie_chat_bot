@@ -5,77 +5,85 @@ from rasa_sdk.events import SlotSet
 import mysql.connector
 import random
 
+
 class ActionStoreUserInfo(Action):
     def name(self) -> Text:
         return "action_store_user_info"
 
     def run(
-        self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]
+        self,
+        dispatcher: CollectingDispatcher,
+        tracker: Tracker,
+        domain: Dict[Text, Any],
     ) -> List[Dict[Text, Any]]:
-        
         # 사용자 입력 가져오기
         director = tracker.get_slot("director")
         genre = tracker.get_slot("genre")
 
         # 정보를 슬롯에 저장
-        return [SlotSet("director", director),
-                SlotSet("genre", genre) ]
+        return [SlotSet("director", director), SlotSet("genre", genre)]
+
 
 class ActionRecommendMovie(Action):
     def name(self) -> Text:
         return "action_recommend_movie"
 
     def run(
-        self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]
+        self,
+        dispatcher: CollectingDispatcher,
+        tracker: Tracker,
+        domain: Dict[Text, Any],
     ) -> List[Dict[Text, Any]]:
         # 슬롯에서 사용자 정보 가져오기
         user_director = tracker.get_slot("director")
         user_genre = tracker.get_slot("genre")
+        user_rating = tracker.get_slot("rating")
+        user_platform = tracker.get_slot("platform")
 
-        # 사용자 입력이 없는 경우 무작위로 추천
-        if not any([user_director, user_genre]):
-            recommended_movie = self.get_random_movie()
-        else:
-            # 사용자 입력을 기반으로 SQL 쿼리 작성
-            sql_query = "SELECT * FROM movies"
-            if user_director:
-                sql_query += f" WHERE director LIKE '{user_director}'"
-                if user_genre:
-                    sql_query += f" AND genre LIKE '{user_genre}'"
-            else:
-                if user_genre:
-                    sql_query += f" WHERE genre LIKE '{user_genre}'"
+        # 사용자 입력을 기반으로 SQL 쿼리 작성
+        sql_query = f"SELECT * FROM movies WHERE genre LIKE '{user_genre}' AND platform LIKE '{user_platform} AND '{user_rating} <= rating"
+        if user_director:
+            sql_query += f" AND LIKE '{user_director}'"
 
-            # MySQL 커넥터를 사용하여 SQL 쿼리 실행
-            try:
-                db_host = "127.0.0.1"
-                db_user = "root"
-                db_password = "qkrrlcks11!@#"
-                db_database = "movie_database"
-                conn = mysql.connector.connect(
-                    user=db_user,
-                    password=db_password,
-                    host=db_host,
-                    database=db_database,
+        # MySQL 커넥터를 사용하여 SQL 쿼리 실행
+        try:
+            db_host = "127.0.0.1"
+            db_user = "root"
+            db_password = "qkrrlcks11!@#"
+            db_database = "movie_database"
+            conn = mysql.connector.connect(
+                user=db_user,
+                password=db_password,
+                host=db_host,
+                database=db_database,
+            )
+
+            cursor = conn.cursor(dictionary=True)
+            cursor.execute(sql_query)
+            results = cursor.fetchall()
+            cursor.close()
+            conn.close()
+
+            # Check if there are no matching movies
+            if not results:
+                dispatcher.utter_message(
+                    "There are no movies that match the information you entered. I will recommend another movie instead."
                 )
+                recommended_movie = self.get_random_movie()
+            else:
+                recommended_movie = random.choice(results)
 
-                cursor = conn.cursor(dictionary=True)
-                cursor.execute(sql_query)
-                results = cursor.fetchall()
-                cursor.close()
-                conn.close()
-
-                # Check if there are no matching movies
-                if not results:
-                    dispatcher.utter_message("There are no movies that match the information you entered. I will recommend a movie instead.")
-                    recommended_movie = self.get_random_movie()
-                else:
-                    recommended_movie = random.choice(results)
-
-            except Exception as e:
-                print(f"Error connecting to the database: {e}")
-                dispatcher.utter_message("An error occurred while fetching movie recommendations.")
-                return []
+        except Exception as e:
+            print(f"Error connecting to the database: {e}")
+            dispatcher.utter_message(
+                "An error occurred while fetching movie recommendations."
+            )
+            return [
+                SlotSet("director", None),
+                SlotSet("genre", None),
+                SlotSet("platform", None),
+                SlotSet("rating", None),
+            ]
 
         # 추천된 영화 표시
         message = (
@@ -84,8 +92,12 @@ class ActionRecommendMovie(Action):
         )
         dispatcher.utter_message(message)
 
-        return [SlotSet("director", None),
-                SlotSet("genre", None)]
+        return [
+            SlotSet("director", None),
+            SlotSet("genre", None),
+            SlotSet("platform", None),
+            SlotSet("rating", None),
+        ]
 
     def get_random_movie(self):
         # 데이터베이스에서 모든 영화 가져오기
@@ -114,13 +126,61 @@ class ActionRecommendMovie(Action):
             print(f"데이터베이스에 연결 중 오류 발생: {e}")
             return None
 
-class ActionGreet(Action):
+
+class ActionSearchMovie(Action):
     def name(self) -> Text:
-        return "action_greet"
+        return "action_search_movie"
 
     def run(
-        self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]
+        self,
+        dispatcher: CollectingDispatcher,
+        tracker: Tracker,
+        domain: Dict[Text, Any],
     ) -> List[Dict[Text, Any]]:
-        # 인사 메시지 표시
-        dispatcher.utter_message("Hello! How can I assist you today?")
-        return []
+        # 슬롯에서 사용자 정보 가져오기
+        user_movie_title = tracker.get_slot("movie_title")
+
+        # 사용자 입력을 기반으로 SQL 쿼리 작성
+        if user_movie_title:
+            sql_query += "SELECT * FROM movies WHERE title LIKE '{user_movie_title}'"
+
+        # MySQL 커넥터를 사용하여 SQL 쿼리 실행
+        try:
+            db_host = "127.0.0.1"
+            db_user = "root"
+            db_password = "qkrrlcks11!@#"
+            db_database = "movie_database"
+            conn = mysql.connector.connect(
+                user=db_user,
+                password=db_password,
+                host=db_host,
+                database=db_database,
+            )
+
+            cursor = conn.cursor(dictionary=True)
+            cursor.execute(sql_query)
+            results = cursor.fetchall()
+            cursor.close()
+            conn.close()
+
+            # Check if there are no matching movies
+            if not results:
+                dispatcher.utter_message(
+                    "There is no movie that matches the information you entered. Search for another movie."
+                )
+                return [SlotSet("movie_title", None)]
+            else:
+                movie_info = random.choice(results)
+
+        except Exception as e:
+            print(f"Error connecting to the database: {e}")
+            dispatcher.utter_message(
+                "An error occurred while fetching movie recommendations."
+            )
+            return [SlotSet("movie_title", None)]
+
+        # 추천된 영화 표시
+        message = f"Title: '{movie_info['Title']}'\n Director: '{movie_info['Director']}'\n Genre: '{movie_info['Genre']}'\n Plot: '{movie_info['Plot']}'"
+        dispatcher.utter_message(message)
+
+        return [SlotSet("movie_title", None)]

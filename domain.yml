@@ -4,21 +4,29 @@ intents:
   - greet
   - recommend_movie
   - search_movie_info
+  - stop
+  - affirm
+  - deny
+  - help
+  - inform
 
 entities:
   - movie_title
   - director
   - genre
-  - score
+  - rating
   - age
-  - nation
-  - flatform
+  - country
+  - platform
   - year
   - actor
-  - 관객수
 
 forms:
-  
+  movie_recommend_form:
+    required_slots:
+      - genre
+      - rating
+      - platform
 
 slots:
   movie_title:
@@ -31,19 +39,50 @@ slots:
     mappings:
     - type: from_entity
       entity: director
+      intent: [inform, recommend_movie]
   genre:
     type: text
     mappings:
     - type: from_entity
       entity: genre
+      intent: [inform, recommend_movie]
+  rating:
+    type: float
+    mappings:
+    - type: from_entity
+      entity: rating
+      intent: [inform, recommend_movie]
+  platform:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: platform
+      intent: [inform, recommend_movie]
 
 responses:
   utter_greet:
     - text: "Hello! How can I assist you today?"
+    - text: "Hello! I'm your movie helper. How may I help you?"
 
-  utter_recommendation:
-    - text: "I recommend the movie '{movie_title}' directed by {director} in the genre '{genre}'."
-    - text: "How about watching '{movie_title}'? It's a {genre} movie directed by {director}."
+  utter_ask_genre:
+    - text: "Please tell me the genre of the movie"
+
+  utter_ask_rating:
+    - text: "Please tell me the minimum rating for the movie"
+
+  utter_ask_flatform:
+    - text: "Please let me know what ott service platform you are using"
+
+  utter_ask_continue:
+    - text: "Do you want to continue?"
+
+  utter_slots_values:
+    - text: "- genre: {genre}\n
+              - rating: >= {rating}\n
+              - flatform: {flatform}"
+  
+  utter_help:
+    - text: "helphelphlpelhpelphlephephleplheheplhelphelphelphlphelphelphelphlephelphelpphelpheplphelphelphelpq"
 
   utter_movie_info:
     - text: "Title: '{movie_title}\n
@@ -53,9 +92,9 @@ responses:
 
 actions:
 - utter_greet
-- utter_recommendation
 - action_recommend_movie
 - action_store_user_info
+- action_search_movie
 
 session_config:
   session_expiration_time: 60

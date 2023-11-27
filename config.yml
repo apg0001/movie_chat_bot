@@ -7,6 +7,10 @@ pipeline:
 - name: "EntitySynonymMapper"
 - name: "CountVectorsFeaturizer"
 - name: "DIETClassifier"
+# - name: DucklingEntityExtractor
+#   url: http://localhost:7000
+#   dimensions:
+#     - number
 
 policies:
 - name: MemoizationPolicy

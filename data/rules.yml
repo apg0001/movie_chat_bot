@@ -6,9 +6,29 @@ rules:
   - intent: greet
   - action: utter_greet
 
-- rule: user requests movie recommendation
+# - rule: user requests movie recommendation
+#   steps:
+#   - intent: recommend_movie
+#   - action: action_store_user_info
+#   - action: action_recommend_movie
+
+- rule: activate movie form
   steps:
-  - intent: recommend_movie
-  - action: action_store_user_info
-  - action: action_recommend_movie
-#  - action: utter_recommendation
+    - intent: recommend_movie
+    - action: movie_recommend_form
+    - active_loop: movie_recommend_form
+
+- rule: submit form
+  condition:
+  - active_loop: movie_recommend_form
+  steps:
+    - action: movie_recommend_form
+    - active_loop: null
+    - action: action_store_user_info
+    - action: utter_slots_values
+    - action: action_recommend_movie
+
+- rule: user search movie
+  steps:
+    - intent: search_movie_info
+    - action: action_search_movie

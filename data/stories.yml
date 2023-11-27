@@ -1,24 +1,40 @@
 version: "3.1"
 
 stories:
-- story: User greets and requests a movie recommendation
+- story: User greets
   steps:
   - intent: greet
   - action: utter_greet
-  - intent: recommend_movie
-  - action: action_store_user_info
-  - action: action_recommend_movie
-#  - action: utter_recommendation
 
-# - story: User only requests a movie recommendation
-#   steps:
-#   - intent: recommend_movie
-#   - action: action_recommend_movie_only
-#   - action: utter_recommendation_only
-
-- story: User provides movie information
+- story: stop form + continue
   steps:
   - intent: recommend_movie
+  - action: movie_recommend_form
+  - active_loop: movie_recommend_form
+  - intent: stop
+  - action: utter_ask_continue
+  - intent: affirm
+  - action: movie_recommend_form
+  - active_loop: null
   - action: action_store_user_info
+  - action: utter_slots_values
   - action: action_recommend_movie
-#  - action: utter_recommendation
+
+- story: stop form + stop
+  steps:
+  - intent: recommend_movie
+  - action: movie_recommend_form
+  - active_loop: movie_recommend_form
+  - intent: stop
+  - action: utter_ask_continue
+  - intent: deny
+  - action: movie_recommend_form
+  - active_loop: null
+  - action: action_store_user_info
+  - action: utter_slots_values
+  - action: action_recommend_movie
+
+- story: user search movie
+  steps:
+  - intent: search_movie_info
+  - action: action_search_movie
