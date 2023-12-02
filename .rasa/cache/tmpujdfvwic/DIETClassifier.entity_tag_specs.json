@@ -1,0 +1,52 @@
+[
+  {
+    "tag_name": "entity",
+    "ids_to_tags": {
+      "1": "B-director",
+      "2": "I-director",
+      "3": "L-director",
+      "4": "U-director",
+      "5": "B-genre",
+      "6": "I-genre",
+      "7": "L-genre",
+      "8": "U-genre",
+      "9": "B-movie_title",
+      "10": "I-movie_title",
+      "11": "L-movie_title",
+      "12": "U-movie_title",
+      "13": "B-platform",
+      "14": "I-platform",
+      "15": "L-platform",
+      "16": "U-platform",
+      "17": "B-rating",
+      "18": "I-rating",
+      "19": "L-rating",
+      "20": "U-rating",
+      "0": "O"
+    },
+    "tags_to_ids": {
+      "B-director": 1,
+      "I-director": 2,
+      "L-director": 3,
+      "U-director": 4,
+      "B-genre": 5,
+      "I-genre": 6,
+      "L-genre": 7,
+      "U-genre": 8,
+      "B-movie_title": 9,
+      "I-movie_title": 10,
+      "L-movie_title": 11,
+      "U-movie_title": 12,
+      "B-platform": 13,
+      "I-platform": 14,
+      "L-platform": 15,
+      "U-platform": 16,
+      "B-rating": 17,
+      "I-rating": 18,
+      "L-rating": 19,
+      "U-rating": 20,
+      "O": 0
+    },
+    "num_tags": 21
+  }
+]

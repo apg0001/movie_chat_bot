@@ -91,6 +91,11 @@ nlu:
     - yes and i dont care
     - right on
     - i love that
+    - Okay
+    - OKAY
+    - OK.
+    - okey
+    - okey dokey
 
 - intent: deny
   examples: |
@@ -116,3 +121,11 @@ nlu:
     - you cannot help me with what I want
     - I think you cant help me
     - stop
+
+- intent: help
+  examples: |
+    - help me
+    - how can I use this chatbot
+    - who are you
+    - help
+    - tell me how I can use

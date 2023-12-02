@@ -32,3 +32,13 @@ rules:
   steps:
     - intent: search_movie_info
     - action: action_search_movie
+
+- rule: user help
+  steps:
+    - intent: help
+    - action: utter_help
+
+- rule: stop recommend
+  steps:
+    - intent: stop
+    - action: utter_ask_continue

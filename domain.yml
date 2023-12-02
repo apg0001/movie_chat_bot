@@ -22,9 +22,9 @@ entities:
   - actor
 
 forms:
-  ignored_intents:
-    - greet
   movie_recommend_form:
+    ignored_intents:
+      - greet
     required_slots:
       - genre
       - rating
@@ -76,15 +76,17 @@ responses:
     - text: "I will recommend you a movie using following parameters\n
               - genre: {genre}\n
               - rating: >= {rating}\n
-              - platform: {platform}"
-  
+              - platform: {platform}" 
   utter_help:
-    - text: "help"
+    - text: "I'm your movie helper.\nI can recommend movie and search movie information for you."
 
   utter_movie_info:
     - text: "Title: '{movie_title}\n
               Driector: '{director}\n
               "
+
+  utter_bot_accept:
+    - text: "Okay. I'll stop recommendation"
 
 
 actions:

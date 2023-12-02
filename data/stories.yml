@@ -28,11 +28,9 @@ stories:
   - intent: stop
   - action: utter_ask_continue
   - intent: deny
-  - action: movie_recommend_form
+  - action: utter_bot_accept
+  - action: action_deactivate_loop
   - active_loop: null
-  - action: action_store_user_info
-  - action: utter_slots_values
-  - action: action_recommend_movie
 
 - story: user search movie
   steps:
