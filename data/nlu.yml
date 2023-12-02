@@ -38,18 +38,14 @@ nlu:
     - Recommend a [western](genre) film
     - Tell me about a movie in the [adventure](genre) genres
     - Suggest me a [comedy](genre) movie with a rating above [4](rating)
-    - Recommend me [action](genre) movies directed by [Christopher Nolan](director)
     - Recommend [thriller](genre) films on [Netflix](platform)
     - I want to watch a [drama](genre) movie
     - What are the top rated movies on [Amazon Prime](platform)?
-    - Suggest [science fiction](genre) films with a minimum rating of [3](rating)
-    - Any good [horror](genre) movies directed by [Guillermo del Toro](director)?
+    - Suggest [Sci-Fi](genre) films with a minimum rating of [3](rating)
     - List [fantasy](genre) films with a high rating
-    - Movies by [Steven Spielberg](director) available on [Hulu](platform)
     - What are some [comedy](genre) movies with a rating above [4](rating)
     - I'm looking for [documentary](genre) on [Disney+](platform)
     - Recommend [action](genre) films with a minimum rating of [4](rating) on [Netflix](platform)
-    - Tell me about [Christopher Nolan](director) movies
     - Recommend movies with a rating of [4](rating) or higher
     - Suggest films with a rating above [3](rating)
     - Movies with ratings [4](rating) and above, please

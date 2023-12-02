@@ -17,11 +17,12 @@ class ActionStoreUserInfo(Action):
         domain: Dict[Text, Any],
     ) -> List[Dict[Text, Any]]:
         # 사용자 입력 가져오기
-        director = tracker.get_slot("director")
         genre = tracker.get_slot("genre")
+        rating = tracker.get_slot("rating")
+        platform = tracker.get_slot("platform")
 
         # 정보를 슬롯에 저장
-        return [SlotSet("director", director), SlotSet("genre", genre)]
+        return [SlotSet("genre", genre), SlotSet("rating", rating), SlotSet("platform", platform)]
 
 
 class ActionRecommendMovie(Action):
@@ -35,15 +36,12 @@ class ActionRecommendMovie(Action):
         domain: Dict[Text, Any],
     ) -> List[Dict[Text, Any]]:
         # 슬롯에서 사용자 정보 가져오기
-        user_director = tracker.get_slot("director")
         user_genre = tracker.get_slot("genre")
         user_rating = tracker.get_slot("rating")
         user_platform = tracker.get_slot("platform")
 
         # 사용자 입력을 기반으로 SQL 쿼리 작성
-        sql_query = f"SELECT * FROM movies WHERE genre LIKE '{user_genre}' AND platform LIKE '{user_platform} AND '{user_rating} <= rating"
-        if user_director:
-            sql_query += f" AND LIKE '{user_director}'"
+        sql_query = f"SELECT * FROM movies WHERE genre LIKE '{user_genre}' AND Platform LIKE '{user_platform}' AND rating >= '{user_rating}'"
 
         # MySQL 커넥터를 사용하여 SQL 쿼리 실행
         try:
@@ -79,7 +77,6 @@ class ActionRecommendMovie(Action):
                 "An error occurred while fetching movie recommendations."
             )
             return [
-                SlotSet("director", None),
                 SlotSet("genre", None),
                 SlotSet("platform", None),
                 SlotSet("rating", None),
@@ -87,13 +84,12 @@ class ActionRecommendMovie(Action):
 
         # 추천된 영화 표시
         message = (
-            f"I recommend the movie '{recommended_movie['Title']}' directed by "
-            f"{recommended_movie['Director']} in the genre '{recommended_movie['Genre']}'."
+            f"I recommend the movie '{recommended_movie['Title']}' directed by '{recommended_movie['Director']}'"
+            f"'{recommended_movie['Director']}' in the genre '{recommended_movie['Genre']}'."
         )
         dispatcher.utter_message(message)
 
         return [
-            SlotSet("director", None),
             SlotSet("genre", None),
             SlotSet("platform", None),
             SlotSet("rating", None),
@@ -142,7 +138,7 @@ class ActionSearchMovie(Action):
 
         # 사용자 입력을 기반으로 SQL 쿼리 작성
         if user_movie_title:
-            sql_query += "SELECT * FROM movies WHERE title LIKE '{user_movie_title}'"
+            sql_query = f"SELECT * FROM movies WHERE title LIKE '{user_movie_title}'"
 
         # MySQL 커넥터를 사용하여 SQL 쿼리 실행
         try:
@@ -166,7 +162,7 @@ class ActionSearchMovie(Action):
             # Check if there are no matching movies
             if not results:
                 dispatcher.utter_message(
-                    "There is no movie that matches the information you entered. Search for another movie."
+                    f"There is no movie that matches title: '{movie_info['Title']}'. Search for another movie."
                 )
                 return [SlotSet("movie_title", None)]
             else:
@@ -179,8 +175,8 @@ class ActionSearchMovie(Action):
             )
             return [SlotSet("movie_title", None)]
 
-        # 추천된 영화 표시
-        message = f"Title: '{movie_info['Title']}'\n Director: '{movie_info['Director']}'\n Genre: '{movie_info['Genre']}'\n Plot: '{movie_info['Plot']}'"
+        # 일치하는 영화 찾아 정보 보여주기
+        message = f"Title: '{movie_info['Title']}'\n Director: '{movie_info['Director']}'\n Genre: '{movie_info['Genre']}'\n Synopsis: '{movie_info['Synopsis']}'"
         dispatcher.utter_message(message)
 
         return [SlotSet("movie_title", None)]

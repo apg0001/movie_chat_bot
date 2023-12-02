@@ -34,12 +34,6 @@ slots:
     mappings:
     - type: from_entity
       entity: movie_title
-  director:
-    type: text
-    mappings:
-    - type: from_entity
-      entity: director
-      intent: [inform, recommend_movie]
   genre:
     type: text
     mappings:
@@ -70,19 +64,20 @@ responses:
   utter_ask_rating:
     - text: "Please tell me the minimum rating for the movie"
 
-  utter_ask_flatform:
+  utter_ask_platform:
     - text: "Please let me know what ott service platform you are using"
 
   utter_ask_continue:
     - text: "Do you want to continue?"
 
   utter_slots_values:
-    - text: "- genre: {genre}\n
+    - text: "I will recommend you a movie using following parameters\n
+              - genre: {genre}\n
               - rating: >= {rating}\n
-              - flatform: {flatform}"
+              - platform: {platform}"
   
   utter_help:
-    - text: "helphelphlpelhpelphlephephleplheheplhelphelphelphlphelphelphelphlephelphelpphelpheplphelphelphelpq"
+    - text: "help"
 
   utter_movie_info:
     - text: "Title: '{movie_title}\n
