@@ -21,8 +21,9 @@ pipeline:
     ambiguity_threshold: 0.1
 
 policies:
-- name: MemoizationPolicy
-- name: TEDPolicy
-- name: RulePolicy
+  - name: MemoizationPolicy
+  - name: TEDPolicy
+  - name: RulePolicy
+#  priority: 2
 
 assistant_id: 20231121-012112-deafening-snare

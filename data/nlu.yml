@@ -54,6 +54,11 @@ nlu:
     - What are some good movies with ratings above [4](rating)?
     - Find films rated [3](rating) or higher
 
+- intent: inform_detail
+  examples: |
+    - Directered by [David Fincher](director)
+    - Country [USA](country)
+
 - intent: search_movie_info
   examples: |
     - Give me information about [The Shawshank Redemption](movie_title)

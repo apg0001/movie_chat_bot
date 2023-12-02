@@ -54,6 +54,16 @@ slots:
     - type: from_entity
       entity: platform
       intent: [inform, recommend_movie]
+  director:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: director
+  country:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: country
 
 responses:
   utter_greet:
@@ -69,30 +79,38 @@ responses:
   utter_ask_platform:
     - text: "Please let me know what ott service platform you are using"
 
-  utter_ask_continue:
-    - text: "Do you want to continue?"
+  # utter_ask_continue:
+  #   - text: "Do you want to continue?"
 
   utter_slots_values:
     - text: "I will recommend you a movie using following parameters\n
               - genre: {genre}\n
               - rating: >= {rating}\n
-              - platform: {platform}" 
+              - platform: {platform}"
   utter_help:
-    - text: "I'm your movie helper.\nI can recommend movie and search movie information for you."
+    - text: "I'm your movie helper.
+    \nI can recommend movie and search movie information for you.
+    \nex) tell me about [movie title]
+    \nex) recommend a movie"
 
   utter_movie_info:
     - text: "Title: '{movie_title}\n
               Driector: '{director}\n
               "
 
-  utter_bot_accept:
+  utter_more_info:
+    - text: "Would you like to enter the detailed conditions?"
+
+  utter_stop_recommend:
     - text: "Okay. I'll stop recommendation"
 
 
 actions:
 - utter_greet
 - action_recommend_movie
+- action_recommend_movie_detail
 - action_store_user_info
+- action_store_user_info_detail
 - action_search_movie
 
 session_config:

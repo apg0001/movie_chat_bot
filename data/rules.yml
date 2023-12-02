@@ -27,6 +27,7 @@ rules:
     - action: action_store_user_info
     - action: utter_slots_values
     - action: action_recommend_movie
+    - action: utter_more_info
 
 - rule: user search movie
   steps:
@@ -38,7 +39,7 @@ rules:
     - intent: help
     - action: utter_help
 
-- rule: stop recommend
-  steps:
-    - intent: stop
-    - action: utter_ask_continue
+# - rule: stop recommend
+#   steps:
+#     - intent: stop
+#     - action: utter_ask_continue

@@ -22,7 +22,11 @@ class ActionStoreUserInfo(Action):
         platform = tracker.get_slot("platform")
 
         # 정보를 슬롯에 저장
-        return [SlotSet("genre", genre), SlotSet("rating", rating), SlotSet("platform", platform)]
+        return [
+            SlotSet("genre", genre),
+            SlotSet("rating", rating),
+            SlotSet("platform", platform),
+        ]
 
 
 class ActionRecommendMovie(Action):
@@ -175,7 +179,7 @@ class ActionSearchMovie(Action):
             return [SlotSet("movie_title", None)]
 
         # 일치하는 영화 찾아 정보 보여주기
-        message = f"Title: '{movie_info['Title']}'\nDirector: '{movie_info['Director']}'\nGenre: '{movie_info['Genre']}'\nSynopsis: '{movie_info['Synopsis']}'"
+        message = f"Title: \t\t'{movie_info['Title']}'\nDirector: \t{movie_info['Director']}\nMain actor: \t{movie_info['MainActors']}\nGenre: \t\t{movie_info['Genre']}\nRating: \t{movie_info['Rating']}\nCountry: \t{movie_info['Country']}\nPlatform: \t{movie_info['Platform']}\nSynopsis: \t{movie_info['Synopsis']}"
         dispatcher.utter_message(message)
 
         return [SlotSet("movie_title", None)]
