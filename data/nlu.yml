@@ -23,11 +23,11 @@ nlu:
     - What movie should I watch?
 
 - intent: inform
+  examples: |
     - Recommend a movie in the [action](genre) genre
     - Suggest a movie directed by [Christopher Nolan](director)
     - Can you tell me about [romance](genre) movies?
     - What's a good [romance](genre) movie to watch?
-    - Tell me about a movie in the [sci-fi](genre) genre
     - Suggest a [drama](genre) movie to watch
     - What's a good [animated](genre) movie?
     - I'm in the mood for a [musical](genre) movie, any recommendations?
@@ -76,10 +76,6 @@ nlu:
     - Tell me about [Schindler's List](movie_title)
     - Give me details on [The Lord of the Rings: The Fellowship of the Ring](movie_title)
     - Tell me about [Fight Club](movie_title)
-    - Give me information about [The Avengers](movie_title)
-    - Tell me about [The Great Gatsby](movie_title)
-    - Give me details on [The Revenant](movie_title)
-    - Tell me about [The Social Network](movie_title)
     
 - intent: affirm
   examples: |
