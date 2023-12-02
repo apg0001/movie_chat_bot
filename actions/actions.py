@@ -137,8 +137,7 @@ class ActionSearchMovie(Action):
         user_movie_title = tracker.get_slot("movie_title")
 
         # 사용자 입력을 기반으로 SQL 쿼리 작성
-        if user_movie_title:
-            sql_query = f"SELECT * FROM movies WHERE title LIKE '{user_movie_title}'"
+        sql_query = f"SELECT * FROM movies WHERE title LIKE '{user_movie_title}'"
 
         # MySQL 커넥터를 사용하여 SQL 쿼리 실행
         try:
@@ -162,7 +161,7 @@ class ActionSearchMovie(Action):
             # Check if there are no matching movies
             if not results:
                 dispatcher.utter_message(
-                    f"There is no movie that matches title: '{movie_info['Title']}'. Search for another movie."
+                    f"There is no movie that matches title: '{user_movie_title}'. Search for another movie."
                 )
                 return [SlotSet("movie_title", None)]
             else:
@@ -176,7 +175,7 @@ class ActionSearchMovie(Action):
             return [SlotSet("movie_title", None)]
 
         # 일치하는 영화 찾아 정보 보여주기
-        message = f"Title: '{movie_info['Title']}'\n Director: '{movie_info['Director']}'\n Genre: '{movie_info['Genre']}'\n Synopsis: '{movie_info['Synopsis']}'"
+        message = f"Title: '{movie_info['Title']}'\nDirector: '{movie_info['Director']}'\nGenre: '{movie_info['Genre']}'\nSynopsis: '{movie_info['Synopsis']}'"
         dispatcher.utter_message(message)
 
         return [SlotSet("movie_title", None)]

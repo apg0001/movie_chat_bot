@@ -22,6 +22,8 @@ entities:
   - actor
 
 forms:
+  ignored_intents:
+    - greet
   movie_recommend_form:
     required_slots:
       - genre
