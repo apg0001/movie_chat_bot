@@ -6,7 +6,7 @@ import mysql.connector
 import random
 
 
-base_sql = None
+base_sql = ""
 
 class ActionStoreUserInfo(Action):
     def name(self) -> Text:
@@ -48,7 +48,9 @@ class ActionRecommendMovie(Action):
 
         # 사용자 입력을 기반으로 SQL 쿼리 작성
         sql_query = f"SELECT * FROM movies WHERE genre LIKE '{user_genre}' AND Platform LIKE '{user_platform}' AND rating >= '{user_rating}'"
+        global base_sql
         base_sql = sql_query
+        print(base_sql)
 
         # MySQL 커넥터를 사용하여 SQL 쿼리 실행
         try:
@@ -209,7 +211,7 @@ class ActionStoreUserInfoDetail(Action):
             SlotSet("age", age),
         ]
     
-class ActionRecommendMovie(Action):
+class ActionRecommendMovieDetail(Action):
     def name(self) -> Text:
         return "action_recommend_movie_detail"
 
@@ -225,14 +227,16 @@ class ActionRecommendMovie(Action):
         user_age = tracker.get_slot("age")
 
         # 사용자 입력을 기반으로 SQL 쿼리 작성
+        global base_sql
         sql_query = base_sql
+        print(sql_query)
         if user_director:
             sql_query += f" AND LIKE '{user_director}'"
         if user_country:
             sql_query += f" AND LIKE '{user_country}'"
         if user_age:
             sql_query += f" AND AgeLimit >= '{user_age}'"
-
+        print(sql_query)
         # MySQL 커넥터를 사용하여 SQL 쿼리 실행
         try:
             db_host = "127.0.0.1"
