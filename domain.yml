@@ -10,6 +10,10 @@ intents:
   - help
   - inform
   - inform_detail
+  - reservate_movie
+  - reservation_info
+  - input_id
+  - show_reservation
 
 entities:
   - movie_title
@@ -21,6 +25,8 @@ entities:
   - platform
   - year
   - actor
+  - location
+  - id
 
 forms:
   movie_recommend_form:
@@ -72,7 +78,19 @@ slots:
     mappings:
     - type: from_entity
       entity: age
-      intent: [inform_detail, from_entity]
+      intent: [inform_detail, age]
+  location:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: location
+      intent: [reservation_info, location]
+  id:
+    type: float
+    mappings:
+    - type: from_entity
+      entity: id
+      intent: [input_id, id]
 
 responses:
   utter_greet:
@@ -116,6 +134,11 @@ responses:
   utter_stop_recommend:
     - text: "\nOkay. I'll stop recommendation"
 
+  utter_ask_id:
+    - text: "Please enter the ID of the information you want to reserve"
+  
+  utter_ask_reservation_inform:
+    - text: "Please tell me the title of the movie you want to see or the location of the theater you want to see"
 
 actions:
 - utter_greet
@@ -124,6 +147,9 @@ actions:
 - action_store_user_info
 - action_store_user_info_detail
 - action_search_movie
+- action_reservate_movie
+- action_show_list
+- action_show_reservation
 
 session_config:
   session_expiration_time: 60

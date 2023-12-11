@@ -13,9 +13,6 @@ stories:
           - intent: inform
       - action: movie_recommend_form
       - active_loop: movie_recommend_form
-      # - intent: stop
-      # - action: utter_ask_continue
-      # - intent: affirm
       - action: movie_recommend_form
       - active_loop: null
       - action: action_store_user_info
@@ -23,18 +20,6 @@ stories:
       - action: action_recommend_movie
       - action: utter_more_info
       - checkpoint: check_recommend
-
-  # - story: stop form + stop
-  #   steps:
-  #   - intent: recommend_movie
-  #   - action: movie_recommend_form
-  #   - active_loop: movie_recommend_form
-  #   - intent: stop
-  #   - action: utter_ask_continue
-  #   - intent: deny
-  #   - action: utter_bot_accept
-  #   - action: action_deactivate_loop
-  #   - active_loop: null
 
   - story: more information
     steps:
@@ -55,3 +40,32 @@ stories:
     steps:
       - intent: search_movie_info
       - action: action_search_movie
+
+  - story: user want to reservate movie
+    steps:
+      - intent: reservate_movie
+      - action: utter_ask_reservation_inform
+      - checkpoint: check_reservation
+
+  - story: reservate movie with theater
+    steps:
+      - checkpoint: check_reservation
+      - intent: reservate_info
+      - action: action_show_list
+      - action: utter_ask_id
+      - intent: input_id
+      - action: action_reservate_movie
+
+  - story: reservate movie with movie
+    steps:
+      - checkpoint: check_reservation
+      - intent: reservation_info
+      - action: action_show_list
+      - action: utter_ask_id
+      - intent: input_id
+      - action: action_reservate_movie
+    
+  - story: show reservation list
+    steps:
+      - intent: show_reservation
+      - action: action_show_reservation

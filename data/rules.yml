@@ -50,3 +50,8 @@ rules:
       - intent: inform_detail
       - action: action_store_user_info_detail
       - action: action_recommend_movie_detail
+
+  - rule: user want to reservate
+    steps:
+      - intent: reservate_movie
+      - action: utter_ask_reservation_inform

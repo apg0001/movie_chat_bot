@@ -137,3 +137,35 @@ nlu:
     - who are you
     - help
     - tell me how I can use
+
+- intent: reservate_movie
+  examples: |
+    - reservate movie
+    - i want to reservate a movie
+    - i want to reservate theater
+    - movie theater
+    - book movie
+    - theater book
+
+- intent: reservation_info
+  examples: |
+    - i want to see [Inception](movie_title)
+    - i want to see a movie at [Seoul](location)
+    - reservation movie [La La Land](movie_title)
+    - I want to watch a movie at a movie theater in [Busan](location)
+    - Show me a movie that I can watch in [Seoul](location)
+    - Tell me about the screening information for [Interstellar](movie_title)
+
+- intent: input_id
+  examples: |
+    - i want to see a movie that id is [14](id)
+    - I want to watch movie number [21](id)
+    - Please book movie number [35](id)
+    - Please make a reservation for a movie with [3](id) id
+
+- intent: show_reservation
+  examples: |
+    - Show me the movie reservation list
+    - Show me the list of movies I booked
+    - Booking List
+    - Reservation List

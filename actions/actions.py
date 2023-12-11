@@ -94,7 +94,7 @@ class ActionRecommendMovie(Action):
         # 추천된 영화 표시
         message = (
             f"I recommend the movie '{recommended_movie['Title']}' directed by '{recommended_movie['Director']}'"
-            f"'{recommended_movie['Director']}' in the genre '{recommended_movie['Genre']}'."
+            f" in the genre '{recommended_movie['Genre']}' on '{recommended_movie['Platform']}'."
         )
         dispatcher.utter_message(message)
 
