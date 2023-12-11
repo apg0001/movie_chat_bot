@@ -1,50 +1,57 @@
 version: "3.1"
 
 stories:
-- story: User greets
-  steps:
-  - intent: greet
-  - action: utter_greet
+  - story: User greets
+    steps:
+      - intent: greet
+      - action: utter_greet
 
-- story: recommend_movie
-  steps:
-  - intent: recommend_movie
-  - action: movie_recommend_form
-  - active_loop: movie_recommend_form
-  # - intent: stop
-  # - action: utter_ask_continue
-  # - intent: affirm
-  - action: movie_recommend_form
-  - active_loop: null
-  - action: action_store_user_info
-  - action: utter_slots_values
-  - action: action_recommend_movie
-  - action: utter_more_info
+  - story: recommend_movie
+    steps:
+      - or:
+          - intent: recommend_movie
+          - intent: inform
+      - action: movie_recommend_form
+      - active_loop: movie_recommend_form
+      # - intent: stop
+      # - action: utter_ask_continue
+      # - intent: affirm
+      - action: movie_recommend_form
+      - active_loop: null
+      - action: action_store_user_info
+      - action: utter_slots_values
+      - action: action_recommend_movie
+      - action: utter_more_info
+      - checkpoint: check_recommend
 
-# - story: stop form + stop
-#   steps:
-#   - intent: recommend_movie
-#   - action: movie_recommend_form
-#   - active_loop: movie_recommend_form
-#   - intent: stop
-#   - action: utter_ask_continue
-#   - intent: deny
-#   - action: utter_bot_accept
-#   - action: action_deactivate_loop
-#   - active_loop: null
+  # - story: stop form + stop
+  #   steps:
+  #   - intent: recommend_movie
+  #   - action: movie_recommend_form
+  #   - active_loop: movie_recommend_form
+  #   - intent: stop
+  #   - action: utter_ask_continue
+  #   - intent: deny
+  #   - action: utter_bot_accept
+  #   - action: action_deactivate_loop
+  #   - active_loop: null
 
-- story: affirm more information
-  steps:
-  - intent: affirm
-  - action: action_store_user_info_detail
-  - action: action_recommend_movie_detail
+  - story: more information
+    steps:
+      - checkpoint: check_recommend
+      - intent: affirm
+      - action: utter_ask_more_info
+      - intent: inform_detail
+      - action: action_store_user_info_detail
+      - action: action_recommend_movie_detail
 
-- story: deny more information
-  steps:
-  - intent: deny
-  - action: utter_stop_recommend
+  - story: deny more information
+    steps:
+      - checkpoint: check_recommend
+      - intent: deny
+      - action: utter_stop_recommend
 
-- story: user search movie
-  steps:
-  - intent: search_movie_info
-  - action: action_search_movie
+  - story: user search movie
+    steps:
+      - intent: search_movie_info
+      - action: action_search_movie

@@ -58,6 +58,9 @@ nlu:
   examples: |
     - Directered by [David Fincher](director)
     - Country [USA](country)
+    - minimum age [12](age)
+    - [15](age) years old or higher
+    - recommend [Korea](country) movie
 
 - intent: search_movie_info
   examples: |

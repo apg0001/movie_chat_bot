@@ -1,45 +1,52 @@
 version: "3.1"
 
 rules:
-- rule: user greet
-  steps:
-  - intent: greet
-  - action: utter_greet
+  - rule: user greet
+    steps:
+      - intent: greet
+      - action: utter_greet
 
-# - rule: user requests movie recommendation
-#   steps:
-#   - intent: recommend_movie
-#   - action: action_store_user_info
-#   - action: action_recommend_movie
+  - rule: activate movie form
+    steps:
+      - or:
+          - intent: recommend_movie
+          - intent: inform
+      - action: movie_recommend_form
+      - active_loop: movie_recommend_form
 
-- rule: activate movie form
-  steps:
-    - intent: recommend_movie
-    - action: movie_recommend_form
-    - active_loop: movie_recommend_form
+  - rule: submit form
+    condition:
+      - active_loop: movie_recommend_form
+    steps:
+      - action: movie_recommend_form
+      - active_loop: null
+      - action: action_store_user_info
+      - action: utter_slots_values
+      - action: action_recommend_movie
+      - action: utter_more_info
 
-- rule: submit form
-  condition:
-  - active_loop: movie_recommend_form
-  steps:
-    - action: movie_recommend_form
-    - active_loop: null
-    - action: action_store_user_info
-    - action: utter_slots_values
-    - action: action_recommend_movie
-    - action: utter_more_info
+  - rule: user search movie
+    steps:
+      - intent: search_movie_info
+      - action: action_search_movie
 
-- rule: user search movie
-  steps:
-    - intent: search_movie_info
-    - action: action_search_movie
+  - rule: user help
+    steps:
+      - intent: help
+      - action: utter_help
 
-- rule: user help
-  steps:
-    - intent: help
-    - action: utter_help
+  - rule: affirm more information
+    steps:
+      - intent: affirm
+      - action: utter_ask_more_info
 
-# - rule: stop recommend
-#   steps:
-#     - intent: stop
-#     - action: utter_ask_continue
+  - rule: deny more information
+    steps:
+      - intent: deny
+      - action: utter_stop_recommend
+
+  - rule: recommend detail
+    steps:
+      - intent: inform_detail
+      - action: action_store_user_info_detail
+      - action: action_recommend_movie_detail

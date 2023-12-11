@@ -9,6 +9,7 @@ intents:
   - deny
   - help
   - inform
+  - inform_detail
 
 entities:
   - movie_title
@@ -59,11 +60,19 @@ slots:
     mappings:
     - type: from_entity
       entity: director
+      intent: [inform_detail, director]
   country:
     type: text
     mappings:
     - type: from_entity
       entity: country
+      intent: [inform_detail, country]
+  age:
+    type: float
+    mappings:
+    - type: from_entity
+      entity: age
+      intent: [inform_detail, from_entity]
 
 responses:
   utter_greet:
@@ -101,8 +110,11 @@ responses:
   utter_more_info:
     - text: "Would you like to enter the detailed conditions?"
 
+  utter_ask_more_info:
+    - text: "Tell me the director, country, age limit, etc. of the movie"
+
   utter_stop_recommend:
-    - text: "Okay. I'll stop recommendation"
+    - text: "\nOkay. I'll stop recommendation"
 
 
 actions:
