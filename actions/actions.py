@@ -409,9 +409,9 @@ class ActionShowList(Action):
         ]
 
 
-class ActionReservateMovie(Action):
+class ActionReserveMovie(Action):
     def name(self) -> Text:
-        return "action_reservate_movie"
+        return "action_reserve_movie"
 
     def run(
         self,

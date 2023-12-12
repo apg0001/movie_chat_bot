@@ -41,20 +41,20 @@ stories:
       - intent: search_movie_info
       - action: action_search_movie
 
-  - story: user want to reservate movie
+  - story: user want to reserve movie
     steps:
-      - intent: reservate_movie
+      - intent: reserve_movie
       - action: utter_ask_reservation_inform
       - checkpoint: check_reservation
 
-  - story: reservate movie
+  - story: reserve movie
     steps:
       - checkpoint: check_reservation
       - intent: reservation_info
       - action: action_show_list
       - action: utter_ask_id
       - intent: input_id
-      - action: action_reservate_movie
+      - action: action_reserve_movie
 
   - story: show reservation list
     steps:

@@ -51,9 +51,9 @@ rules:
       - action: action_store_user_info_detail
       - action: action_recommend_movie_detail
 
-  - rule: user want to reservate
+  - rule: user want to reserve
     steps:
-      - intent: reservate_movie
+      - intent: reserve_movie
       - action: utter_ask_reservation_inform
 
   - rule: user input reservation info
@@ -62,10 +62,10 @@ rules:
       - action: action_show_list
       - action: utter_ask_id
 
-  - rule: user reservate by id
+  - rule: user reserve by id
     steps:
       - intent: input_id
-      - action: action_reservate_movie
+      - action: action_reserve_movie
 
   - rule: show reservation list
     steps:

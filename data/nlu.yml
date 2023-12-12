@@ -158,11 +158,11 @@ nlu:
     - help
     - tell me how I can use
 
-- intent: reservate_movie
+- intent: reserve_movie
   examples: |
-    - reservate movie
-    - i want to reservate a movie
-    - i want to reservate theater
+    - reserve movie
+    - i want to reserve a movie
+    - i want to reserve by theater
     - movie theater
     - book movie
     - theater book

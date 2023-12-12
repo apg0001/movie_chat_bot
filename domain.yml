@@ -14,7 +14,7 @@ intents:
         - age
         - country
         - director
-  - reservate_movie
+  - reserve_movie
   - reservation_info
   - input_id:
       use_entities:
@@ -132,7 +132,7 @@ responses:
     \nI can recommend movie and search movie information for you.
     \nex) tell me about [movie title]
     \nex) recommend a movie
-    \nex) reservate a movie"
+    \nex) reserve a movie"
 
   utter_movie_info:
     - text: "Title: '{movie_title}\n
@@ -161,7 +161,7 @@ actions:
 - action_store_user_info
 - action_store_user_info_detail
 - action_search_movie
-- action_reservate_movie
+- action_reserve_movie
 - action_show_list
 - action_show_reservation
 
