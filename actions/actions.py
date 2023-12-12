@@ -333,16 +333,21 @@ class ActionShowList(Action):
         # 슬롯에서 사용자 정보 가져오기
         user_title = tracker.get_slot("movie_title")
         user_location = tracker.get_slot("location")
+        user_name = tracker.get_slot("name")
 
         # 사용자 입력을 기반으로 SQL 쿼리 작성
         sql_query = f"SELECT S.screening_id, M.title, T.name, T.location, S.screening_date, S.screening_time "
         sql_query += f"FROM screenings S, theaters T, Movies M "
-        sql_query += f"WHERE M.ID = S.ID AND T.theater_id = S.theater_id AND S.screening_id in ("
-        sql_query += f"SELECT screening_id FROM screenings WHERE ID in ("
+        sql_query += (
+            f"WHERE M.ID = S.ID AND T.theater_id = S.theater_id AND S.screening_id in ("
+        )
         if user_title:
+            sql_query += f"SELECT screening_id FROM screenings WHERE ID in ("
             sql_query += f"SELECT ID FROM movies WHERE Title LIKE '{user_title}'"
         if user_location:
-            sql_query += f"SELECT ID FROM theaters WHERE location LIKE '{user_location}'"
+            sql_query += f"SELECT screening_id FROM screenings WHERE theater_id in ("
+            sql_query += f"SELECT theater_id FROM theaters WHERE name LIKE '{user_name}' AND location LIKE '{user_location}'"
+
         sql_query += f")) ORDER BY S.screening_date, S.screening_time"
 
         print(sql_query)
@@ -371,14 +376,22 @@ class ActionShowList(Action):
                 dispatcher.utter_message(
                     "There are no screenings that match the information you entered."
                 )
-                return [SlotSet("movie_title", None), SlotSet("location", None)]
+                return [
+                    SlotSet("movie_title", None),
+                    SlotSet("location", None),
+                    SlotSet("name", None),
+                ]
 
         except Exception as e:
             print(f"Error connecting to the database: {e}")
             dispatcher.utter_message(
                 "An error occurred while fetching movie recommendations."
             )
-            return [SlotSet("movie_title", None), SlotSet("location", None)]
+            return [
+                SlotSet("movie_title", None),
+                SlotSet("location", None),
+                SlotSet("name", None),
+            ]
 
         result_string = "ID\tMOVIE\t\tTHEATER\t\tDATE\t\tTIME\n"
         result_string += (
@@ -389,4 +402,124 @@ class ActionShowList(Action):
         message = result_string
         dispatcher.utter_message(message)
 
-        return [SlotSet("movie_title", None), SlotSet("location", None)]
+        return [
+            SlotSet("movie_title", None),
+            SlotSet("location", None),
+            SlotSet("name", None),
+        ]
+
+
+class ActionReservateMovie(Action):
+    def name(self) -> Text:
+        return "action_reservate_movie"
+
+    def run(
+        self,
+        dispatcher: CollectingDispatcher,
+        tracker: Tracker,
+        domain: Dict[Text, Any],
+    ) -> List[Dict[Text, Any]]:
+        # 슬롯에서 사용자 정보 가져오기
+        user_id = tracker.get_slot("id")
+        print(user_id)
+
+        # 사용자 입력을 기반으로 SQL 쿼리 작성
+        sql_query = f"INSERT INTO reservations (screening_id) VALUES ('{user_id}')"
+        print(sql_query)
+
+        # MySQL 커넥터를 사용하여 SQL 쿼리 실행
+        try:
+            db_host = "127.0.0.1"
+            db_user = "root"
+            db_password = "qkrrlcks11!@#"
+            db_database = "movie_database"
+            conn = mysql.connector.connect(
+                user=db_user,
+                password=db_password,
+                host=db_host,
+                database=db_database,
+            )
+
+            cursor = conn.cursor(dictionary=True)
+            cursor.execute(sql_query)
+            conn.commit()
+            cursor.close()
+            conn.close()
+
+        except Exception as e:
+            print(f"Error connecting to the database: {e}")
+            dispatcher.utter_message(
+                "An error occurred while fetching movie reservations."
+            )
+            return [SlotSet("id", None)]
+
+        # 추천된 영화 표시
+        message = f"Successfilly booked a movie (reservation_id : {user_id})"
+        dispatcher.utter_message(message)
+
+        return [SlotSet("id", None)]
+
+
+class ActionShowReservation(Action):
+    def name(self) -> Text:
+        return "action_show_reservation"
+
+    def run(
+        self,
+        dispatcher: CollectingDispatcher,
+        tracker: Tracker,
+        domain: Dict[Text, Any],
+    ) -> List[Dict[Text, Any]]:
+        
+        #SQL 쿼리 작성
+        sql_query = f"SELECT S.screening_id, M.title, T.name, T.location, S.screening_date, S.screening_time "
+        sql_query += f"FROM screenings S, theaters T, Movies M "
+        sql_query += (
+            f"WHERE M.ID = S.ID AND T.theater_id = S.theater_id AND S.screening_id in ("
+        )
+        sql_query += f"SELECT screening_id FROM reservations)"
+        sql_query += f" ORDER BY S.screening_date, S.screening_time"
+
+        print(sql_query)
+
+        # MySQL 커넥터를 사용하여 SQL 쿼리 실행
+        try:
+            db_host = "127.0.0.1"
+            db_user = "root"
+            db_password = "qkrrlcks11!@#"
+            db_database = "movie_database"
+            conn = mysql.connector.connect(
+                user=db_user,
+                password=db_password,
+                host=db_host,
+                database=db_database,
+            )
+
+            cursor = conn.cursor(dictionary=True)
+            cursor.execute(sql_query)
+            results = cursor.fetchall()
+            cursor.close()
+            conn.close()
+
+            # Check if there are no matching movies
+            if not results:
+                dispatcher.utter_message("There are no reservations.")
+                return []
+
+        except Exception as e:
+            print(f"Error connecting to the database: {e}")
+            dispatcher.utter_message(
+                "An error occurred while fetching show reservations."
+            )
+            return []
+
+        result_string = "ID\tMOVIE\t\tTHEATER\t\tDATE\t\tTIME\n"
+        result_string += (
+            "\n".join("\t".join(map(str, row.values())) for row in results) + "\n"
+        )
+
+        # 추천된 영화 표시
+        message = result_string
+        dispatcher.utter_message(message)
+
+        return []

@@ -9,10 +9,16 @@ intents:
   - deny
   - help
   - inform
-  - inform_detail
+  - inform_detail:
+      use_entities:
+        - age
+        - country
+        - director
   - reservate_movie
   - reservation_info
-  - input_id
+  - input_id:
+      use_entities:
+        - id
   - show_reservation
 
 entities:
@@ -27,6 +33,7 @@ entities:
   - actor
   - location
   - id
+  - name
 
 forms:
   movie_recommend_form:
@@ -91,6 +98,12 @@ slots:
     - type: from_entity
       entity: id
       intent: [input_id, id]
+  name:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: name
+      intent: [reservation_info, text]
 
 responses:
   utter_greet:

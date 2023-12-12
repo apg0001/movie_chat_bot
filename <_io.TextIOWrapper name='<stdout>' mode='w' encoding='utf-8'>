@@ -121,3 +121,171 @@
 18	18	2	2023-12-14	21:30:00
 79	19	4	2023-12-14	22:10:00
 28	28	4	2023-12-15	17:30:00[0m
+[94mID	MOVIE		THEATER		DATE		TIME
+11	The Silence of the Lambs	Lotte Cinema	Busan	2023-12-01	14:00:00
+75	The Great Gatsby	Megabox	Busan	2023-12-01	14:10:00
+39	The Usual Suspects	CGV	Seoul	2023-12-01	15:30:00
+61	Inception	Megabox	Seoul	2023-12-01	18:15:00
+27	The Pianist	Lotte Cinema	Busan	2023-12-01	19:00:00
+49	The Sixth Sense	CGV	Seoul	2023-12-01	21:15:00
+80	The Revenant	Lotte Cinema	Seoul	2023-12-02	15:20:00
+86	The Martian	Lotte Cinema	Seoul	2023-12-02	16:00:00
+67	The Godfather	CGV	Seoul	2023-12-02	16:00:00
+42	The Pursuit of Happyness	Megabox	Busan	2023-12-02	16:15:00
+16	Avatar	Megabox	Seoul	2023-12-02	18:30:00
+5	Forrest Gump	Lotte Cinema	Seoul	2023-12-02	19:45:00
+69	Fight Club	Megabox	Busan	2023-12-03	12:45:00
+88	No Country for Old Men	CGV	Seoul	2023-12-03	12:45:00
+51	The Godfather: Part II	Lotte Cinema	Busan	2023-12-03	17:45:00
+1	Inception	Megabox	Seoul	2023-12-03	18:30:00
+32	Django Unchained	CGV	Busan	2023-12-03	20:30:00
+23	The Shining	CGV	Busan	2023-12-03	22:00:00
+44	The Dark Knight Rises	Lotte Cinema	Seoul	2023-12-04	14:45:00
+77	The Social Network	CGV	Seoul	2023-12-04	17:40:00
+30	Gone with the Wind	Lotte Cinema	Seoul	2023-12-04	20:00:00
+64	The Shawshank Redemption	CGV	Busan	2023-12-04	21:00:00
+83	The Shining	Megabox	Seoul	2023-12-04	21:00:00
+10	The Lord of the Rings: The Fellowship of the Ring	Lotte Cinema	Seoul	2023-12-04	22:30:00
+2	The Dark Knight	CGV	Busan	2023-12-05	15:45:00
+35	Eternal Sunshine of the Spotless Mind	Megabox	Busan	2023-12-05	17:30:00
+20	The Revenant	Lotte Cinema	Busan	2023-12-05	19:00:00
+72	Schindler's List	CGV	Seoul	2023-12-05	20:15:00
+47	Jaws	Megabox	Busan	2023-12-05	20:45:00
+13	Titanic	CGV	Busan	2023-12-06	17:45:00
+40	The Princess Bride	Lotte Cinema	Busan	2023-12-06	18:45:00
+81	The Departed	Lotte Cinema	Busan	2023-12-06	19:30:00
+62	The Dark Knight	CGV	Seoul	2023-12-06	19:30:00
+25	The Wolf of Wall Street	CGV	Seoul	2023-12-06	20:30:00
+29	Whiplash	CGV	Busan	2023-12-07	14:45:00
+71	The Silence of the Lambs	Megabox	Seoul	2023-12-07	18:00:00
+90	Gone with the Wind	CGV	Busan	2023-12-07	18:00:00
+9	Fight Club	Megabox	Seoul	2023-12-07	18:15:00
+37	Incredibles 2	CGV	Busan	2023-12-07	21:00:00
+68	Inglourious Basterds	CGV	Busan	2023-12-08	14:20:00
+87	The Pianist	Lotte Cinema	Busan	2023-12-08	14:20:00
+46	The Sound of Music	Megabox	Seoul	2023-12-08	15:30:00
+31	The Green Mile	Lotte Cinema	Seoul	2023-12-08	16:15:00
+22	The Grand Budapest Hotel	Megabox	Busan	2023-12-08	18:45:00
+7	The Godfather	CGV	Busan	2023-12-08	21:00:00
+76	Avatar	Lotte Cinema	Busan	2023-12-08	21:25:00
+78	La La Land	CGV	Busan	2023-12-09	13:55:00
+50	Amélie	Lotte Cinema	Seoul	2023-12-09	14:30:00
+33	Casablanca	Lotte Cinema	Busan	2023-12-09	14:45:00
+19	Interstellar	CGV	Seoul	2023-12-09	15:15:00
+65	Forrest Gump	Megabox	Busan	2023-12-09	17:30:00
+84	For a Few Dollars More	Megabox	Busan	2023-12-09	17:30:00
+3	Pulp Fiction	Megabox	Busan	2023-12-09	20:00:00
+21	The Departed	Megabox	Seoul	2023-12-10	14:30:00
+73	Titanic	Lotte Cinema	Seoul	2023-12-10	16:30:00
+8	Inglourious Basterds	Lotte Cinema	Busan	2023-12-10	16:45:00
+48	The Matrix Reloaded	CGV	Busan	2023-12-10	17:00:00
+41	The Avengers	Megabox	Seoul	2023-12-10	22:00:00
+63	Pulp Fiction	Lotte Cinema	Seoul	2023-12-11	15:45:00
+82	The Grand Budapest Hotel	CGV	Seoul	2023-12-11	15:45:00
+17	The Social Network	Megabox	Busan	2023-12-11	16:45:00
+4	The Shawshank Redemption	CGV	Seoul	2023-12-11	17:15:00
+38	Blade Runner	Lotte Cinema	Seoul	2023-12-11	19:15:00
+24	For a Few Dollars More	Lotte Cinema	Seoul	2023-12-12	16:15:00
+34	The Great Escape	CGV	Seoul	2023-12-12	18:00:00
+74	Jurassic Park	CGV	Busan	2023-12-12	19:45:00
+14	Jurassic Park	CGV	Seoul	2023-12-12	20:15:00
+26	The Martian	Megabox	Seoul	2023-12-13	15:45:00
+45	The Terminator	Lotte Cinema	Busan	2023-12-13	19:00:00
+12	Schindler's List	Megabox	Busan	2023-12-13	19:30:00
+89	Whiplash	Megabox	Seoul	2023-12-13	22:30:00
+70	The Lord of the Rings: The Fellowship of the Ring	Lotte Cinema	Busan	2023-12-13	22:30:00
+6	The Matrix	CGV	Seoul	2023-12-14	14:30:00
+36	The Breakfast Club	Megabox	Seoul	2023-12-14	15:45:00
+52	Good Will Hunting	Megabox	Seoul	2023-12-14	19:00:00
+66	The Matrix	Lotte Cinema	Busan	2023-12-14	20:45:00
+85	The Wolf of Wall Street	CGV	Busan	2023-12-14	20:45:00
+18	La La Land	CGV	Busan	2023-12-14	21:30:00
+79	Interstellar	Megabox	Busan	2023-12-14	22:10:00
+15	The Great Gatsby	Lotte Cinema	Seoul	2023-12-15	15:00:00
+28	No Country for Old Men	Megabox	Busan	2023-12-15	17:30:00
+43	The Truman Show	CGV	Seoul	2023-12-15	20:30:00[0m
+[94mPlease enter the ID of the information you want to reserve[0m
+[94mID	MOVIE		THEATER		DATE		TIME
+11	The Silence of the Lambs	Lotte Cinema	Busan	2023-12-01	14:00:00
+75	The Great Gatsby	Megabox	Busan	2023-12-01	14:10:00
+39	The Usual Suspects	CGV	Seoul	2023-12-01	15:30:00
+61	Inception	Megabox	Seoul	2023-12-01	18:15:00
+27	The Pianist	Lotte Cinema	Busan	2023-12-01	19:00:00
+49	The Sixth Sense	CGV	Seoul	2023-12-01	21:15:00
+80	The Revenant	Lotte Cinema	Seoul	2023-12-02	15:20:00
+86	The Martian	Lotte Cinema	Seoul	2023-12-02	16:00:00
+67	The Godfather	CGV	Seoul	2023-12-02	16:00:00
+42	The Pursuit of Happyness	Megabox	Busan	2023-12-02	16:15:00
+16	Avatar	Megabox	Seoul	2023-12-02	18:30:00
+5	Forrest Gump	Lotte Cinema	Seoul	2023-12-02	19:45:00
+69	Fight Club	Megabox	Busan	2023-12-03	12:45:00
+88	No Country for Old Men	CGV	Seoul	2023-12-03	12:45:00
+51	The Godfather: Part II	Lotte Cinema	Busan	2023-12-03	17:45:00
+1	Inception	Megabox	Seoul	2023-12-03	18:30:00
+32	Django Unchained	CGV	Busan	2023-12-03	20:30:00
+23	The Shining	CGV	Busan	2023-12-03	22:00:00
+44	The Dark Knight Rises	Lotte Cinema	Seoul	2023-12-04	14:45:00
+77	The Social Network	CGV	Seoul	2023-12-04	17:40:00
+30	Gone with the Wind	Lotte Cinema	Seoul	2023-12-04	20:00:00
+64	The Shawshank Redemption	CGV	Busan	2023-12-04	21:00:00
+83	The Shining	Megabox	Seoul	2023-12-04	21:00:00
+10	The Lord of the Rings: The Fellowship of the Ring	Lotte Cinema	Seoul	2023-12-04	22:30:00
+2	The Dark Knight	CGV	Busan	2023-12-05	15:45:00
+35	Eternal Sunshine of the Spotless Mind	Megabox	Busan	2023-12-05	17:30:00
+20	The Revenant	Lotte Cinema	Busan	2023-12-05	19:00:00
+72	Schindler's List	CGV	Seoul	2023-12-05	20:15:00
+47	Jaws	Megabox	Busan	2023-12-05	20:45:00
+13	Titanic	CGV	Busan	2023-12-06	17:45:00
+40	The Princess Bride	Lotte Cinema	Busan	2023-12-06	18:45:00
+81	The Departed	Lotte Cinema	Busan	2023-12-06	19:30:00
+62	The Dark Knight	CGV	Seoul	2023-12-06	19:30:00
+25	The Wolf of Wall Street	CGV	Seoul	2023-12-06	20:30:00
+29	Whiplash	CGV	Busan	2023-12-07	14:45:00
+71	The Silence of the Lambs	Megabox	Seoul	2023-12-07	18:00:00
+90	Gone with the Wind	CGV	Busan	2023-12-07	18:00:00
+9	Fight Club	Megabox	Seoul	2023-12-07	18:15:00
+37	Incredibles 2	CGV	Busan	2023-12-07	21:00:00
+68	Inglourious Basterds	CGV	Busan	2023-12-08	14:20:00
+87	The Pianist	Lotte Cinema	Busan	2023-12-08	14:20:00
+46	The Sound of Music	Megabox	Seoul	2023-12-08	15:30:00
+31	The Green Mile	Lotte Cinema	Seoul	2023-12-08	16:15:00
+22	The Grand Budapest Hotel	Megabox	Busan	2023-12-08	18:45:00
+7	The Godfather	CGV	Busan	2023-12-08	21:00:00
+76	Avatar	Lotte Cinema	Busan	2023-12-08	21:25:00
+78	La La Land	CGV	Busan	2023-12-09	13:55:00
+50	Amélie	Lotte Cinema	Seoul	2023-12-09	14:30:00
+33	Casablanca	Lotte Cinema	Busan	2023-12-09	14:45:00
+19	Interstellar	CGV	Seoul	2023-12-09	15:15:00
+65	Forrest Gump	Megabox	Busan	2023-12-09	17:30:00
+84	For a Few Dollars More	Megabox	Busan	2023-12-09	17:30:00
+3	Pulp Fiction	Megabox	Busan	2023-12-09	20:00:00
+21	The Departed	Megabox	Seoul	2023-12-10	14:30:00
+73	Titanic	Lotte Cinema	Seoul	2023-12-10	16:30:00
+8	Inglourious Basterds	Lotte Cinema	Busan	2023-12-10	16:45:00
+48	The Matrix Reloaded	CGV	Busan	2023-12-10	17:00:00
+41	The Avengers	Megabox	Seoul	2023-12-10	22:00:00
+63	Pulp Fiction	Lotte Cinema	Seoul	2023-12-11	15:45:00
+82	The Grand Budapest Hotel	CGV	Seoul	2023-12-11	15:45:00
+17	The Social Network	Megabox	Busan	2023-12-11	16:45:00
+4	The Shawshank Redemption	CGV	Seoul	2023-12-11	17:15:00
+38	Blade Runner	Lotte Cinema	Seoul	2023-12-11	19:15:00
+24	For a Few Dollars More	Lotte Cinema	Seoul	2023-12-12	16:15:00
+34	The Great Escape	CGV	Seoul	2023-12-12	18:00:00
+74	Jurassic Park	CGV	Busan	2023-12-12	19:45:00
+14	Jurassic Park	CGV	Seoul	2023-12-12	20:15:00
+26	The Martian	Megabox	Seoul	2023-12-13	15:45:00
+45	The Terminator	Lotte Cinema	Busan	2023-12-13	19:00:00
+12	Schindler's List	Megabox	Busan	2023-12-13	19:30:00
+89	Whiplash	Megabox	Seoul	2023-12-13	22:30:00
+70	The Lord of the Rings: The Fellowship of the Ring	Lotte Cinema	Busan	2023-12-13	22:30:00
+6	The Matrix	CGV	Seoul	2023-12-14	14:30:00
+36	The Breakfast Club	Megabox	Seoul	2023-12-14	15:45:00
+52	Good Will Hunting	Megabox	Seoul	2023-12-14	19:00:00
+66	The Matrix	Lotte Cinema	Busan	2023-12-14	20:45:00
+85	The Wolf of Wall Street	CGV	Busan	2023-12-14	20:45:00
+18	La La Land	CGV	Busan	2023-12-14	21:30:00
+79	Interstellar	Megabox	Busan	2023-12-14	22:10:00
+15	The Great Gatsby	Lotte Cinema	Seoul	2023-12-15	15:00:00
+28	No Country for Old Men	Megabox	Busan	2023-12-15	17:30:00
+43	The Truman Show	CGV	Seoul	2023-12-15	20:30:00[0m
+[94mPlease enter the ID of the information you want to reserve[0m

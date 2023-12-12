@@ -60,7 +60,26 @@ nlu:
     - Country [USA](country)
     - minimum age [12](age)
     - [15](age) years old or higher
+    - recommend [Korea](country) movie Directed by [David Fincher](director)
+    - Country [USA](country)
+    - minimum age [12](age)
+    - [15](age) years old or higher
     - recommend [Korea](country) movie
+    - Directed by [Christopher Nolan](director)
+    - Country [UK](country)
+    - Minimum age [13](age)
+    - [PG-13](age) rating or higher
+    - Recommend [France](country) movie
+    - Directed by [Quentin Tarantino](director)
+    - Country [USA](country)
+    - Minimum age [18](age)
+    - [R](age) rating or higher
+    - Recommend [Italy](country) movie
+    - Directed by [Hayao Miyazaki](director)
+    - Country [Japan](country)
+    - Minimum age [7](age)
+    - [G](age) or [PG](age) rating
+    - Recommend [South Korea](country) movie
 
 - intent: search_movie_info
   examples: |
@@ -80,6 +99,7 @@ nlu:
     - Tell me about [Schindler's List](movie_title)
     - Give me details on [The Lord of the Rings: The Fellowship of the Ring](movie_title)
     - Tell me about [Fight Club](movie_title)
+    - Tell me about [La La Land](movie_title)
     
 - intent: affirm
   examples: |
@@ -150,10 +170,10 @@ nlu:
 - intent: reservation_info
   examples: |
     - i want to see [Inception](movie_title)
-    - i want to see a movie at [Seoul](location)
+    - i want to see a movie at [CGV](name) [Seoul](location)
     - reservation movie [La La Land](movie_title)
-    - I want to watch a movie at a movie theater in [Busan](location)
-    - Show me a movie that I can watch in [Seoul](location)
+    - I want to watch a movie at a movie theater in [Megabox](name) [Busan](location)
+    - Show me a movie that I can watch in [Lotte Cinema](name) [Seoul](location)
     - Tell me about the screening information for [Interstellar](movie_title)
 
 - intent: input_id
@@ -162,6 +182,16 @@ nlu:
     - I want to watch movie number [21](id)
     - Please book movie number [35](id)
     - Please make a reservation for a movie with [3](id) id
+    - I want to make a reservation for the movie with ID [8](id)
+    - Please reserve seats for movie number [14](id)
+    - Can you help me book seats for the film with ID [22](id)?
+    - I'd like to book a movie with the ID [7](id)
+    - Make a reservation for movie number [31](id)
+    - Please book tickets for the film with ID [18](id)
+    - I want to reserve seats for movie ID [29](id)
+    - Help me make a reservation for the movie with number [11](id)
+    - Can you assist me in booking for movie ID [25](id)?
+    - I'd like to reserve seats for the movie with ID [36](id)
 
 - intent: show_reservation
   examples: |
