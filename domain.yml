@@ -118,7 +118,8 @@ responses:
     - text: "I'm your movie helper.
     \nI can recommend movie and search movie information for you.
     \nex) tell me about [movie title]
-    \nex) recommend a movie"
+    \nex) recommend a movie
+    \nex) reservate a movie"
 
   utter_movie_info:
     - text: "Title: '{movie_title}\n
@@ -135,7 +136,7 @@ responses:
     - text: "\nOkay. I'll stop recommendation"
 
   utter_ask_id:
-    - text: "Please enter the ID of the information you want to reserve"
+    - text: "\nPlease enter the ID of the information you want to reserve"
   
   utter_ask_reservation_inform:
     - text: "Please tell me the title of the movie you want to see or the location of the theater you want to see"

@@ -47,16 +47,7 @@ stories:
       - action: utter_ask_reservation_inform
       - checkpoint: check_reservation
 
-  - story: reservate movie with theater
-    steps:
-      - checkpoint: check_reservation
-      - intent: reservate_info
-      - action: action_show_list
-      - action: utter_ask_id
-      - intent: input_id
-      - action: action_reservate_movie
-
-  - story: reservate movie with movie
+  - story: reservate movie
     steps:
       - checkpoint: check_reservation
       - intent: reservation_info
@@ -64,7 +55,7 @@ stories:
       - action: utter_ask_id
       - intent: input_id
       - action: action_reservate_movie
-    
+
   - story: show reservation list
     steps:
       - intent: show_reservation

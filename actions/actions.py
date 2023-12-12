@@ -8,6 +8,7 @@ import random
 
 base_sql = ""
 
+
 class ActionStoreUserInfo(Action):
     def name(self) -> Text:
         return "action_store_user_info"
@@ -189,6 +190,7 @@ class ActionSearchMovie(Action):
 
         return [SlotSet("movie_title", None)]
 
+
 class ActionStoreUserInfoDetail(Action):
     def name(self) -> Text:
         return "action_store_user_info_detail"
@@ -210,7 +212,8 @@ class ActionStoreUserInfoDetail(Action):
             SlotSet("country", country),
             SlotSet("age", age),
         ]
-    
+
+
 class ActionRecommendMovieDetail(Action):
     def name(self) -> Text:
         return "action_recommend_movie_detail"
@@ -231,9 +234,9 @@ class ActionRecommendMovieDetail(Action):
         sql_query = base_sql
         print(sql_query)
         if user_director:
-            sql_query += f" AND LIKE '{user_director}'"
+            sql_query += f" AND Director LIKE '{user_director}'"
         if user_country:
-            sql_query += f" AND LIKE '{user_country}'"
+            sql_query += f" AND Country LIKE '{user_country}'"
         if user_age:
             sql_query += f" AND AgeLimit >= '{user_age}'"
         print(sql_query)
@@ -279,7 +282,7 @@ class ActionRecommendMovieDetail(Action):
         # 추천된 영화 표시
         message = (
             f"I recommend the movie '{recommended_movie['Title']}' directed by '{recommended_movie['Director']}'"
-            f"'{recommended_movie['Director']}' in the genre '{recommended_movie['Genre']}'."
+            f" in the genre '{recommended_movie['Genre']}' on platform '{recommended_movie['Platform']}'."
         )
         dispatcher.utter_message(message)
 
@@ -315,3 +318,70 @@ class ActionRecommendMovieDetail(Action):
         except Exception as e:
             print(f"데이터베이스에 연결 중 오류 발생: {e}")
             return None
+
+
+class ActionShowList(Action):
+    def name(self) -> Text:
+        return "action_show_list"
+
+    def run(
+        self,
+        dispatcher: CollectingDispatcher,
+        tracker: Tracker,
+        domain: Dict[Text, Any],
+    ) -> List[Dict[Text, Any]]:
+        # 슬롯에서 사용자 정보 가져오기
+        user_title = tracker.get_slot("movie_title")
+        user_location = tracker.get_slot("location")
+
+        # 사용자 입력을 기반으로 SQL 쿼리 작성
+        sql_query = f"SELECT * FROM screenings WHERE "
+
+        if user_title:
+            sql_query += f"ID = (SELECT ID FROM movies WHERE Title LIKE '{user_title}')"
+        if user_location:
+            sql_query += f"theater_id in (SELECT theater_id FROM theaters WHERE location LIKE '{user_location}')"
+        
+        sql_query += f" ORDER BY screening_date, screening_time"
+
+        # MySQL 커넥터를 사용하여 SQL 쿼리 실행
+        try:
+            db_host = "127.0.0.1"
+            db_user = "root"
+            db_password = "qkrrlcks11!@#"
+            db_database = "movie_database"
+            conn = mysql.connector.connect(
+                user=db_user,
+                password=db_password,
+                host=db_host,
+                database=db_database,
+            )
+
+            cursor = conn.cursor(dictionary=True)
+            cursor.execute(sql_query)
+            results = cursor.fetchall()
+            cursor.close()
+            conn.close()
+
+            # Check if there are no matching movies
+            if not results:
+                dispatcher.utter_message(
+                    "There are no screenings that match the information you entered."
+                )
+                return [SlotSet("movie_title", None), SlotSet("location", None)]
+
+        except Exception as e:
+            print(f"Error connecting to the database: {e}")
+            dispatcher.utter_message(
+                "An error occurred while fetching movie recommendations."
+            )
+            return [SlotSet("movie_title", None), SlotSet("location", None)]
+
+        result_string = "ID\tMOVIE\tTHEATER\tDATE\t\tTIME\n"
+        result_string += '\n'.join('\t'.join(map(str, row.values())) for row in results) + '\n'
+
+        # 추천된 영화 표시
+        message = result_string
+        dispatcher.utter_message(message)
+
+        return [SlotSet("movie_title", None), SlotSet("location", None)]

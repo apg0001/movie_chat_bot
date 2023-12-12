@@ -55,3 +55,19 @@ rules:
     steps:
       - intent: reservate_movie
       - action: utter_ask_reservation_inform
+
+  - rule: user input reservation info
+    steps:
+      - intent: reservation_info
+      - action: action_show_list
+      - action: utter_ask_id
+
+  - rule: user reservate by id
+    steps:
+      - intent: input_id
+      - action: action_reservate_movie
+
+  - rule: show reservation list
+    steps:
+      - intent: show_reservation
+      - action: action_show_reservation
