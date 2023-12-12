@@ -335,14 +335,17 @@ class ActionShowList(Action):
         user_location = tracker.get_slot("location")
 
         # 사용자 입력을 기반으로 SQL 쿼리 작성
-        sql_query = f"SELECT * FROM screenings WHERE "
-
+        sql_query = f"SELECT S.screening_id, M.title, T.name, T.location, S.screening_date, S.screening_time "
+        sql_query += f"FROM screenings S, theaters T, Movies M "
+        sql_query += f"WHERE M.ID = S.ID AND T.theater_id = S.theater_id AND S.screening_id in ("
+        sql_query += f"SELECT screening_id FROM screenings WHERE ID in ("
         if user_title:
-            sql_query += f"ID = (SELECT ID FROM movies WHERE Title LIKE '{user_title}')"
+            sql_query += f"SELECT ID FROM movies WHERE Title LIKE '{user_title}'"
         if user_location:
-            sql_query += f"theater_id in (SELECT theater_id FROM theaters WHERE location LIKE '{user_location}')"
-        
-        sql_query += f" ORDER BY screening_date, screening_time"
+            sql_query += f"SELECT ID FROM theaters WHERE location LIKE '{user_location}'"
+        sql_query += f")) ORDER BY S.screening_date, S.screening_time"
+
+        print(sql_query)
 
         # MySQL 커넥터를 사용하여 SQL 쿼리 실행
         try:
@@ -377,8 +380,10 @@ class ActionShowList(Action):
             )
             return [SlotSet("movie_title", None), SlotSet("location", None)]
 
-        result_string = "ID\tMOVIE\tTHEATER\tDATE\t\tTIME\n"
-        result_string += '\n'.join('\t'.join(map(str, row.values())) for row in results) + '\n'
+        result_string = "ID\tMOVIE\t\tTHEATER\t\tDATE\t\tTIME\n"
+        result_string += (
+            "\n".join("\t".join(map(str, row.values())) for row in results) + "\n"
+        )
 
         # 추천된 영화 표시
         message = result_string
